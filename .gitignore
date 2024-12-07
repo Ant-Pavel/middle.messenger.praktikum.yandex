@@ -1,0 +1,8 @@
+# compiled output
+/dist
+/public
+/export
+
+# Dependency directories
+node_modules/
+package-lock.json
