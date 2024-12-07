@@ -1,0 +1,164 @@
+.profilePage {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    min-height: 100vh;
+}
+
+.profile {
+    &__container {
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    &__avatar {
+        margin: 60px auto;
+    
+        &--noNameText {
+            margin-bottom: 90px;
+        }
+    }
+
+    &__info {
+        margin-bottom: 60px;
+    }
+
+    &__info--changePasswordPage {
+        margin-bottom: 160px;
+    }
+
+    &__actions {
+        margin-bottom: 60px;
+    }
+
+    &__action {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    &__action:not(:last-child) {
+        border-bottom: 1px solid #EAEAEA;
+    }
+
+    &__saveBtnWrap {
+        text-align: center;
+    }
+}
+
+
+
+
+@media screen and (min-width: 550px) {  
+    .profile__container {
+        width: 530px;
+    }
+}
+
+.arrowBackSidebar {
+    width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FBFBFB;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 0.3;
+    &:hover {
+        background-color: #EFEFEF;
+    }
+
+    &__icon {
+        width: 30px;
+        height: 30px;
+        background-color: var(--blueClr);
+        border-radius: 50%;
+        transform: rotate(-180deg);
+    }
+}
+
+.avatar {
+    &__image {
+        background-image: url('../assets/images/emptyAvatar.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        cursor: pointer;
+    }
+
+    &__overlay {
+        display: none;
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        text-align: center;
+    }
+
+    &__overlayText {
+        user-select: none;
+    }
+
+    &__image {
+        margin: 0 auto;
+        margin-bottom: 20px;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background-color: #EFEFEF;
+
+        &:hover .avatar__overlay {
+            display: flex;
+        }
+    }
+
+    &__text {
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+.infoTable {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__row:not(:last-child) {
+        border-bottom: 1px solid #EAEAEA;
+    }
+
+    &__cell {
+        width: 50%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 13px;
+        line-height: 15px;
+    }
+
+    &__cell--value {
+        text-align: right;
+        color: #999999;
+    }
+
+}
+
+.action__text {
+    cursor: pointer;
+
+    &--blue {
+        color: var(--blueClr);
+
+        &:hover {
+            color: darkblue;
+        }
+    }
+
+    &--red {
+        color: var(--redClr);
+
+        &:hover {
+            color: darkred;
+        }
+    }
+}

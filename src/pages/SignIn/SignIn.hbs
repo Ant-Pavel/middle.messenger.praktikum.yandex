@@ -1,0 +1,19 @@
+<div class="signIn__page">
+    <main class="signIn__container">
+        <div class="form__wrap">
+            <h1 class="form__title">Регистрация</h1>
+            <form class="signIn__form form">
+                {{#each signIn.controls }}
+                    {{> FormControl }}
+                {{/each}}
+                <div class="form__buttonWrap">
+                    {{> Button id="signInBtn" text="Зарегистрироваться" }}
+                </div>
+                <div class="form__action">
+                    {{> ActionLink id="signInEntranceLink" text="Войти" }}
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+{{> PagesNavigation }}

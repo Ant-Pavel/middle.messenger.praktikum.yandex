@@ -1,0 +1,7 @@
+<div class="formControl">
+    <label for="{{inputName}}" class="formControl__label">{{ label }}</label>
+    <input  class="formControl__input" id="{{inputName}}" name="{{inputName}}" type="{{ type }}" value="{{value}}" />
+    {{#if hint}}
+        <span class="formControl__hint">{{ hint }}</span>
+    {{/if}}
+</div>

@@ -1,0 +1,19 @@
+<div class="logIn__page">
+    <main class="logIn__container">
+        <div class="form__wrap">
+            <h1 class="form__title">Вход</h1>
+            <form class="logIn__form form">
+                {{#each logIn.controls }}
+                    {{> FormControl }}
+                {{/each}}
+                <div class="form__buttonWrap logIn__formBtnWrap">
+                    {{> Button id="logInBtn" text="Авторизоваться" }}
+                </div>
+                <div class="form__action">
+                    {{> ActionLink id="loginInNoAccountLink" text="Нет аккаунта?" }}
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+{{> PagesNavigation  }}

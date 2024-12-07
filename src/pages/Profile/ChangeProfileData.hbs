@@ -1,0 +1,13 @@
+<div class="profilePage">
+    {{> ProfileSidebarBack }}
+    <div class="profile__container">
+        {{> ProfileAvatar noNameText="true" }}
+        <div class="profile__info">
+        {{> ProfileTable fields=profile.fields }}
+        </div>
+        <div class="profile__saveBtnWrap">
+            {{> Button id="profileSaveBtn" text="Сохранить" }}
+        </div>
+    </div>
+</div>
+{{> PagesNavigation  }}

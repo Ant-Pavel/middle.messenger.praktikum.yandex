@@ -1,0 +1,18 @@
+<div class="profilePage">
+    {{> ProfileSidebarBack }}
+    <div class="profile__container">
+        {{> ProfileAvatar }}
+        <div class="profile__info">
+        {{> ProfileTable fields=profile.fields }}
+        </div>
+        <ul class="profile__actions">
+            {{#each profile.actions}}
+                <li class="profile__action action"> 
+                    <a href="#" id="{{this.id}}" class="action__text action__text--{{this.color}}">{{this.text}}</a>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{> ModalDummy  }}
+{{> PagesNavigation  }}
