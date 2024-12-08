@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "start": "vite build  && node server.js",
+    "start": "vite build  && node server.cjs",
     "build": "vite build"
   },
   "keywords": [],
@@ -19,11 +19,12 @@
     "postcss-mixins": "^11.0.3",
     "postcss-nested": "^7.0.2",
     "postcss-preset-env": "^10.1.1",
-    "vite": "^6.0.1",
+    "vite": "^4.5.5",
     "vite-plugin-handlebars": "^2.0.0"
   },
   "dependencies": {
     "express": "^4.21.2",
     "handlebars": "^4.7.8"
-  }
+  },
+  "type": "module"
 }

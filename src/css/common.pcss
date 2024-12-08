@@ -26,13 +26,22 @@
     font-style: normal;
 }
 
+:root {
+    --blueClr: #3369F3;
+    --blackTextClr: #1E1E1E;
+    --greyTextClr: #999999;
+    --greyBgClr: #EFEFEF;
+    --redClr: #FF2F2F;
+    --whiteClr: #fff;
+    --greyLinesClr: #EAEAEA;
+}
 
 html {
     font-family: "Inter", sans-serif;
     font-size: 13px;
     line-height: 15px;
     font-weight: 500;
-    color: #1E1E1E;
+    color: var(--blackTextClr);
 }
 
 body {
@@ -41,12 +50,6 @@ body {
 
 * {
     box-sizing: border-box;
-}
-
-:root {
-    --blueClr: #3369F3;
-    --blackClr: #1E1E1E;
-    --greyClr: #999999;
 }
 
 @define-mixin resetList {
@@ -79,5 +82,5 @@ button {
 
 
 .text-black {
-    color: var(--blackClr);
+    color: var(--blackTextClr);
 }

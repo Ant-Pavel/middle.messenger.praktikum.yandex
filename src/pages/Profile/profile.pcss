@@ -22,10 +22,6 @@
         margin-bottom: 60px;
     }
 
-    &__info--changePasswordPage {
-        margin-bottom: 160px;
-    }
-
     &__actions {
         margin-bottom: 60px;
     }
@@ -36,7 +32,7 @@
     }
 
     &__action:not(:last-child) {
-        border-bottom: 1px solid #EAEAEA;
+        border-bottom: 1px solid var(--greyLinesClr);
     }
 
     &__saveBtnWrap {
@@ -63,7 +59,7 @@
     transition: all;
     transition-duration: 0.3;
     &:hover {
-        background-color: #EFEFEF;
+        background-color: var(--greyBgClr);
     }
 
     &__icon {
@@ -107,7 +103,7 @@
         width: 130px;
         height: 130px;
         border-radius: 50%;
-        background-color: #EFEFEF;
+        background-color: var(--greyBgClr);
 
         &:hover .avatar__overlay {
             display: flex;
@@ -125,7 +121,7 @@
     border-collapse: collapse;
 
     &__row:not(:last-child) {
-        border-bottom: 1px solid #EAEAEA;
+        border-bottom: 1px solid var(--greyLinesClr);
     }
 
     &__cell {
@@ -138,7 +134,7 @@
 
     &__cell--value {
         text-align: right;
-        color: #999999;
+        color: var(--greyTextClr);
     }
 
 }
@@ -162,3 +158,18 @@
         }
     }
 }
+
+.editProfileForm {
+    &__buttonWrap {
+        margin-top: 60px;
+        text-align: center;
+    }
+}
+
+.editProfilePasswordForm {
+    &__buttonWrap {
+        margin-top: 160px;
+        text-align: center;
+    }
+}
+

@@ -3,10 +3,14 @@
     <div class="profile__container">
         {{> ProfileAvatar noNameText="true" }}
         <div class="profile__info">
-        {{> ProfileTable fields=profile.fields }}
-        </div>
-        <div class="profile__saveBtnWrap">
-            {{> Button id="profileSaveBtn" text="Сохранить" }}
+            <form class="profile__form editProfileForm">
+                {{#each profile.changeProfileInfoControls }}
+                    {{> FormControl }}
+                {{/each}}
+                <div class="editProfileForm__buttonWrap">
+                    {{> Button id="profileSaveBtn" text="Сохранить" }}
+                </div>
+            </form>
         </div>
     </div>
 </div>

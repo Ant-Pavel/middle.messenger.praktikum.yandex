@@ -11,7 +11,7 @@
         width: 310px;
         padding-top: 20px;
         background-color: #FBFBFB;
-        border-right: 1px solid #EAEAEA;
+        border-right: 1px solid var(--greyLinesClr);
     }
     
     &__right {
@@ -25,7 +25,7 @@
 .profileLink {
     font-size: 12px;
     line-height: 15px;
-    color: #999999;
+    color: var(--greyTextClr);
     cursor: pointer;
 
     &__wrap {
@@ -38,7 +38,7 @@
         vertical-align: middle;
         width: 15px;
         height: 15px;
-        fill: #999999;
+        fill: var(--greyTextClr);
     }
 
     :hover {
@@ -69,7 +69,7 @@
         display: flex;
         align-items: center;
         padding-bottom: 10px;
-        border-bottom: 1px solid #EAEAEA;
+        border-bottom: 1px solid var(--greyLinesClr);
     }
 
     &__avatar {
@@ -120,7 +120,7 @@
     &__msgGroupDate {
         margin-bottom: 25px;
         font-size: 12px;
-        color: #999999;
+        color: var(--greyTextClr);
         text-align: center;
     }
 
@@ -182,7 +182,7 @@
     &__msgTime {
         display: block;
         margin-left: 2px;
-        color: #999999;
+        color: var(--greyTextClr);
         font-size: 9px;
         line-height: 12px;
         text-align: right;
@@ -202,7 +202,7 @@
         font-size: 0;
         width: 100%;
         height: auto;
-        border: 1px solid #EAEAEA;
+        border: 1px solid var(--greyLinesClr);
         border-radius: 15px;
     }
     
@@ -220,7 +220,7 @@
     
     
     &__msgForm {
-        border-top: 1px solid #EAEAEA;
+        border-top: 1px solid var(--greyLinesClr);
         padding: 10px 0;
     }
     
@@ -229,7 +229,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #999;
+        color: var(--greyTextClr);
         text-align: center;
     
     }
@@ -255,7 +255,7 @@
         height: 1px;
         left: 10px;
         right: 10px;
-        background-color: #EAEAEA;
+        background-color: var(--greyLinesClr);
     }
 
     &--active {
@@ -297,7 +297,7 @@
         height: 30px;
         font-size: 12px;
         line-height: 15px;
-        color: #999999;
+        color: var(--greyTextClr);
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -306,7 +306,7 @@
         display: block;
         font-size: 9px;
         line-height: 13px;
-        color: #999999;
+        color: var(--greyTextClr);
     }
 
     &__unreadAmount {
@@ -340,7 +340,7 @@
     outline: none;
     border: none;
     border-radius: 5px;
-    background-color: #EFEFEF;
+    background-color: var(--greyBgClr);
     line-height: 16px;
 
     &__label {
@@ -350,7 +350,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         top: 50%;
-        color: var(--greyClr);
+        color: var(--greyTextClr);
     }
 
     &__wrap--focused &__label {
@@ -398,7 +398,7 @@
         outline: none;
         resize: none;
         border: 0;
-        background-color: #EFEFEF;
+        background-color: var(--greyBgClr);
         border-radius: 30px;
     }
 

@@ -89,19 +89,19 @@ function attachEventListeners() {
         });
     }
 
-    if (currentPage === 'ChangeProfileData') {
+    if (currentPage === 'ChangeProfileData' || currentPage === 'ChangeProfilePassword') {
         const profileSidebarBack = document.getElementById('profileSidebarBack');
+        const profileSaveBtn = document.getElementById('profileSaveBtn');
 
-        profileSidebarBack.addEventListener('click', function(e) {
-            currentPage = 'Profile';
-            render();
+        const formInputWraps = document.querySelectorAll('.formControl')
+        const removeListenersF = addEventListenersToInputs(Array.from(formInputWraps), 'formControl');
+
+        profileSaveBtn.addEventListener('click', function(e) {
+            e.preventDefault();
         });
-    }
-
-    if (currentPage === 'ChangeProfilePassword') {
-        const profileSidebarBack = document.getElementById('profileSidebarBack');
 
         profileSidebarBack.addEventListener('click', function(e) {
+            const removeListenersF = addEventListenersToInputs(Array.from(formInputWraps), 'formControl');
             currentPage = 'Profile';
             render();
         });
