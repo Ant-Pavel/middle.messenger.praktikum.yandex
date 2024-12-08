@@ -1,0 +1,10 @@
+<div class="profile__avatar avatar {{#if noNameText}} profile__avatar--noNameText {{/if}}">
+    <div id="profileAvatarImg" class="avatar__image">
+        <div class="avatar__overlay">
+            <span class="avatar__overlayText">Поменять аватар</span>
+        </div>
+    </div>
+    {{#unless noNameText }}
+        <p class="avatar__text">{{ profile.name }}</p>
+    {{/unless}}
+</div>

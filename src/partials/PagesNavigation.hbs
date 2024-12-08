@@ -1,0 +1,9 @@
+<nav class="pagesNavigation">
+    <ul>
+        {{#each navigationList}}
+        <li>
+            {{> ActionLink link=id text=name }}
+        </li>
+        {{/each}}
+    </ul>
+</nav>

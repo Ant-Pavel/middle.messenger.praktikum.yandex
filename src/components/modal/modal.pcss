@@ -1,0 +1,52 @@
+
+.dialog {
+    
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    &__holder {
+        width: 340px;
+        min-height: 240px;
+        padding: 30px;
+        border-radius: 12px;
+        background-color: #fff;
+    }
+    
+    &__title {
+        margin-bottom: 30px;
+        font-size: 15px;
+        line-height: 20px;
+        text-align: center;
+    }
+    
+    &__text {
+        margin-bottom: 30px;
+        padding: 5px 60px;
+        text-decoration: underline;
+        text-align: center;
+        color: var(--blueClr);
+        font-size: 12px;
+        line-height: 16px;
+    }
+    
+    &__actions {
+        margin-bottom: 10px;
+    }
+    
+    &__messages {
+        text-align: center;
+    }
+    
+    &__message {
+        color: var(--redClr);
+        font-size: 11px;
+        line-height: 13px;
+    }
+}
