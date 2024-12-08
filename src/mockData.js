@@ -29,6 +29,65 @@ export const profile = {
         { name: 'Старый пароль', value: "●●●●●" },
         { name: 'Новый пароль', value: "●●●" },
         { name: 'Повторите новый пароль', value: "●●●●" }
+    ],
+    changeProfileInfoControls: [
+        {
+            label: 'Почта',
+            type: 'email',
+            value: 'pochta@yandex.ru',
+            inputName: 'email'
+        },
+        {
+            label: 'Логин',
+            type: 'text',
+            value: 'ivanivanov',
+            inputName: 'login'
+        },
+        {
+            label: 'Имя',
+            type: 'text',
+            value: 'Иван',
+            inputName: 'first_name'
+        },
+        {
+            label: 'Фамилия',
+            type: 'text',
+            value: 'Иванов',
+            inputName: 'second_name'
+        },
+        {
+            label: 'Имя в чате',
+            type: 'text',
+            value: 'Иван',
+            inputName: 'display_name'
+        },
+        {
+            label: 'Телефон',
+            type: 'tel',
+            value: '+7 (909) 967 30 30',
+            inputName: 'phone'
+        }
+    ],
+    changeProfilePasswordControls: [
+        {
+            label: 'Старый пароль',
+            type: 'password',
+            value: '+7 (909) 967 30 30',
+            inputName: 'oldPassword'
+        },
+        {
+            label: 'Новый пароль',
+            type: 'password',
+            value: '+7 (909) 967 30 30',
+            inputName: 'newPassword'
+        },
+        {
+            label: 'Повторите новый пароль',
+            type: 'password',
+            value: '+7 (909) 967 30 30',
+            hint: 'Пароли не совпадают',
+            inputName: 'newPasswordCheck'
+        }
     ]
 };
 
