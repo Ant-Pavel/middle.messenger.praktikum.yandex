@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "start": "vite build  && node server.js",
+    "start": "vite build  && node server.cjs",
     "build": "vite build"
   },
   "keywords": [],
@@ -25,5 +25,6 @@
   "dependencies": {
     "express": "^4.21.2",
     "handlebars": "^4.7.8"
-  }
+  },
+  "type": "module"
 }
