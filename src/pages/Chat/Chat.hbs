@@ -85,8 +85,8 @@
             </div>
         </main>
         <div class="chat__footer">
-            <div class="chat__msgForm msgForm">
-                <button class="msgForm__appendBtn msgForm__appendBtn--active">
+            <form class="chat__msgForm msgForm">
+                <button type="button" class="msgForm__appendBtn msgForm__appendBtn--active">
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="#999999" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M7.18662 13.5L14.7628 5.92389L15.7056 6.8667L8.12943 14.4428L7.18662 13.5Z" />
@@ -104,15 +104,15 @@
                             d="M9.70092 16.0144C7.95751 17.7578 7.95123 20.5782 9.68689 22.3138C11.4226 24.0495 14.2429 24.0432 15.9863 22.2998L15.0435 21.357C13.8231 22.5774 11.8489 22.5818 10.6339 21.3668C9.41894 20.1518 9.42334 18.1776 10.6437 16.9572L9.70092 16.0144Z" />
                     </svg>
                 </button>
-                <textarea class="msgForm__textarea" placeholder="Сообщение" rows="1"></textarea>
-                <button class="msgForm__sendBtn">
+                <textarea name="message" class="msgForm__textarea" placeholder="Сообщение" rows="1"></textarea>
+                <button onclick="return false;" class="msgForm__sendBtn">
                     <svg width="30" height="30" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="14" cy="14" r="14" fill="#3369F3" />
                         <rect x="8" y="13.2" width="11" height="1.6" fill="white" />
                         <path d="M15 9L19 14L15 19" stroke="white" stroke-width="1.6" />
                     </svg>
                 </button>
-            </div>
+            </form>
         </div>
         <div class="menu__wrap menu__wrap--appendFile">
             <ul class="menu__list">
