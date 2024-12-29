@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import './chatMsgImage.pcss';
-import rawTemplate from './chatMsgImage.hbs?raw';
+import rawTemplate from './ChatMsgImage.hbs?raw';
 
 export type ChatMsgImageProps = {
   type: 'image';
