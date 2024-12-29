@@ -1,6 +1,5 @@
 # compiled output
-
-/public
+/dist
 /export
 
 # Dependency directories

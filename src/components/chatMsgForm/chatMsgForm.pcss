@@ -1,0 +1,41 @@
+.msgForm {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &__appendBtn {
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+    }
+
+    &__appendBtn--active svg {
+        fill: var(--blueClr);
+    }
+
+    &__textarea {
+        margin: 0 10px;
+        padding: 8px 20px;
+        flex-grow: 1;
+        font-size: 12px;
+        line-height: 15px;
+        outline: none;
+        resize: none;
+        border: 0;
+        background-color: var(--greyBgClr);
+        border-radius: 30px;
+    }
+
+    &__sendBtn {
+        width: 30px;
+        height: 30px;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        outline: none;
+        background-color: transparent;
+    }
+}

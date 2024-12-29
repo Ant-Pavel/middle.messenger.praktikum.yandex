@@ -1,6 +1,6 @@
-<div class="formControl">
+<div class="formControl {{#if value}}formControl--hasValue{{else}}''{{/if}}">
     <label for="{{inputName}}" class="formControl__label">{{ label }}</label>
-    <input  class="formControl__input" id="{{inputName}}" name="{{inputName}}" type="{{ type }}" value="{{value}}" />
+    <input class="formControl__input" id="{{inputName}}" name="{{inputName}}" type="{{ type }}" value="{{value}}" data-forEventName="input" />
     {{#if hint}}
         <span class="formControl__hint">{{ hint }}</span>
     {{/if}}

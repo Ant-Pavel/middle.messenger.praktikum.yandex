@@ -1,0 +1,40 @@
+.avatar {
+    &__overlay {
+        display: none;
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 15px;
+        background-color: rgb(0 0 0 / 50%);
+        color: #fff;
+        text-align: center;
+    }
+
+    &__image {
+        position: relative;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background-color: var(--greyBgClr);
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+
+        &:hover .avatar__overlay {
+            display: flex;
+        }
+    }
+
+    &__overlayText {
+        user-select: none;
+    }
+
+    &__text {
+        text-align: center;
+        font-weight: 600;
+    }
+}

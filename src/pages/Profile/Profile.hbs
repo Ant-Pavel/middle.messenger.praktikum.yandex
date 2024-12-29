@@ -1,17 +1,14 @@
 <div class="profilePage">
-    {{> ProfileSidebarBack }}
+    {{{ sidebarArrowLink }}}
     <main class="profile__container">
-        {{> ProfileAvatar }}
+        {{{ profileAvatar }}}
         <div class="profile__info">
-        {{> ProfileTable fields=profile.fields }}
+        {{{ profileTable }}}
         </div>
         <ul class="profile__actions">
-            {{#each profile.actions}}
-                <li class="profile__action action">
-                    <a href="#" id="{{this.id}}" class="action__text action__text--{{this.color}}">{{this.text}}</a>
-                </li>
-            {{/each}}
+            {{{ profileActions }}}
         </ul>
     </main>
+    {{{ modal  }}}
+    {{{ pagesNavigation }}}
 </div>
-{{> PagesNavigation  }}
