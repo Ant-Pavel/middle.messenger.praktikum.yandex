@@ -2,18 +2,17 @@
     <main class="signIn__container">
         <div class="form__wrap">
             <h1 class="form__title">Регистрация</h1>
-            <form class="signIn__form form">
-                {{#each signIn.controls }}
-                    {{> FormControl }}
-                {{/each}}
+            <form class="signIn__form form" data-forEventName="formElement">
+                {{{ formControls }}}
                 <div class="form__buttonWrap">
-                    {{> Button id="signInBtn" text="Зарегистрироваться" }}
+                    {{{ button }}}
                 </div>
                 <div class="form__action">
-                    {{> ActionLink id="signInEntranceLink" text="Войти" }}
+                    {{{ enterLink }}}
+                    {{!-- {{> ActionLink id="signInEntranceLink" text="Войти" }} --}}
                 </div>
             </form>
         </div>
     </main>
+    {{{ pagesNavigation  }}}
 </div>
-{{> PagesNavigation }}

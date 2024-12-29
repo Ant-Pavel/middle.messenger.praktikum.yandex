@@ -1,0 +1,91 @@
+
+.chat {
+    &__msg {
+        margin-bottom: 10px;
+    }
+
+    &__msg--mine {
+        align-self: flex-end;
+        background-color: #E4EDFD;
+    }
+    
+    &__msg--mine.chat__msg--text {
+        border-radius: 15px;
+        border-bottom-right-radius: 0;
+    }
+    
+    &__msg--others + .chat__msg--mine {
+        margin-top: 30px;
+    }
+    
+    &__msg--text {
+        position: relative;
+        max-width: 43%;
+        padding: 10px;
+        padding-right: 60px;
+        border-radius: 15px;
+        border-top-left-radius: 0;
+        background-color: #F8F8F8;
+        font-size: 12px;
+    }
+    
+    &__msg p {
+        margin: 0;
+        margin-bottom: 15px;
+    }
+    
+    &__msg p:nth-last-of-type(1) {
+        margin-bottom: 0;
+    }
+    
+    &__msgInfo {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    &__msgStatus {
+        margin-top: -3px;
+    }
+    
+    &__msgTime {
+        display: block;
+        margin-left: 2px;
+        color: var(--greyTextClr);
+        font-size: 9px;
+        line-height: 12px;
+        text-align: right;
+    }
+    
+    &__msg--mine .chat__msgTime { 
+        color: var(--blueClr);
+    }
+    
+    &__msg--image {
+        position: relative;
+        width: 35%;
+    }
+    
+    &__msgImg {
+        display: block;
+        font-size: 0;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--greyLinesClr);
+        border-radius: 15px;
+    }
+    
+    &__msgTimeImg {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        padding: 0 7px;
+        color: #fff;
+        background-color: rgb(82 82 82 / 50%);
+        border-radius: 30px;
+        font-size: 9px;
+        line-height: 12px;
+    }
+}

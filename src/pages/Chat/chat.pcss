@@ -27,6 +27,7 @@
     line-height: 15px;
     color: var(--greyTextClr);
     cursor: pointer;
+    text-decoration: none;
 
     &__wrap {
         margin-bottom: 20px;
@@ -87,7 +88,6 @@
     &__actionsBtn {
         display: flex;
         padding: 0;
-        outline: none;
         border: none;
         border-radius: 50%;
         background-color: transparent;
@@ -117,108 +117,6 @@
         display: none;
     }
 
-    &__msgGroupDate {
-        margin-bottom: 25px;
-        font-size: 12px;
-        color: var(--greyTextClr);
-        text-align: center;
-    }
-
-    &__msgGroupByDate {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    &__msg {
-        margin-bottom: 10px;
-    }
-    
-    &__msg--others + .chat__msg--mine {
-        margin-top: 30px;
-    }
-    
-    &__msg--text {
-        position: relative;
-        max-width: 43%;
-        padding: 10px;
-        padding-right: 60px;
-        border-radius: 15px;
-        border-top-left-radius: 0;
-        background-color: #F8F8F8;
-        font-size: 12px;
-    }
-    
-    &__msg--mine {
-        align-self: flex-end;
-        background-color: #E4EDFD;
-    }
-    
-    &__msg--mine.chat__msg--text {
-        border-radius: 15px;
-        border-bottom-right-radius: 0;
-    }
-    
-    &__msg p {
-        margin: 0;
-        margin-bottom: 15px;
-    }
-    
-    &__msg p:nth-last-of-type(1) {
-        margin-bottom: 0;
-    }
-    
-    &__msgInfo {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        right: 10px;
-        bottom: 10px;
-    }
-    
-    &__msgStatus {
-        margin-top: -3px;
-    }
-    
-    &__msgTime {
-        display: block;
-        margin-left: 2px;
-        color: var(--greyTextClr);
-        font-size: 9px;
-        line-height: 12px;
-        text-align: right;
-    }
-    
-    &__msg--mine .chat__msgTime { 
-        color: var(--blueClr);
-    }
-    
-    &__msg--image {
-        position: relative;
-        width: 35%;
-    }
-    
-    &__msgImg {
-        display: block;
-        font-size: 0;
-        width: 100%;
-        height: auto;
-        border: 1px solid var(--greyLinesClr);
-        border-radius: 15px;
-    }
-    
-    &__msgTimeImg {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        padding: 0 7px;
-        color: #fff;
-        background-color: rgba(82, 82, 82, 0.5);
-        border-radius: 30px;
-        font-size: 9px;
-        line-height: 12px;
-    }
-    
-    
     &__msgForm {
         border-top: 1px solid var(--greyLinesClr);
         padding: 10px 0;
@@ -233,99 +131,6 @@
         text-align: center;
     
     }
-}
-
-
-.chatCard {
-    display: flex;
-    position: relative;
-    margin-top: 5px;
-    padding: 7px 10px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #fff;
-    }
-
-    &::before {
-        position: absolute;
-        content: '';
-        top: -3px;
-        bottom: 5px;
-        height: 1px;
-        left: 10px;
-        right: 10px;
-        background-color: var(--greyLinesClr);
-    }
-
-    &--active {
-        background-color: #E4EDFD;
-    }
-
-    &__image {
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-
-    &__info {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__top {
-        flex-grow: 1;
-        margin-bottom: 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    &__bottom {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__name {
-        margin: 0;
-        font-weight: 600;
-    }
-
-    &__lastMsg {
-        margin: 0;
-        width: 195px;
-        height: 30px;
-        font-size: 12px;
-        line-height: 15px;
-        color: var(--greyTextClr);
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    &__time {
-        display: block;
-        font-size: 9px;
-        line-height: 13px;
-        color: var(--greyTextClr);
-    }
-
-    &__unreadAmount {
-        margin-top: 8px;
-        margin-left: 5px;
-        flex-shrink: 0;
-        background-color: var(--blueClr);
-        color: #fff;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 11px;
-        line-height: 13px;
-        text-align: center;
-    }
-    
 }
 
 
@@ -367,48 +172,5 @@
     
     &__wrap--hasValue &__label span {
         display: none;
-    }
-}
-
-
-.msgForm {
-    width: 100%;
-    display: flex;
-    align-items: center;
-
-    &__appendBtn {
-        background-color: transparent;
-        border: 0;
-        padding: 0;
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-    }
-
-    &__appendBtn--active svg {
-        fill: var(--blueClr);
-    }
-
-    &__textarea {
-        margin: 0 10px;
-        padding: 8px 20px;
-        flex-grow: 1;
-        font-size: 12px;
-        line-height: 15px;
-        outline: none;
-        resize: none;
-        border: 0;
-        background-color: var(--greyBgClr);
-        border-radius: 30px;
-    }
-
-    &__sendBtn {
-        width: 30px;
-        height: 30px;
-        border: 0;
-        padding: 0;
-        cursor: pointer;
-        outline: none;
-        background-color: transparent;
     }
 }

@@ -1,0 +1,88 @@
+.chatCard {
+    display: flex;
+    position: relative;
+    margin-top: 5px;
+    padding: 7px 10px;
+    cursor: pointer;
+
+    &:hover:not(&--active) {
+        background-color: #fff;
+    }
+
+    &::before {
+        position: absolute;
+        content: '';
+        inset: -3px 10px 5px;
+        height: 1px;
+        background-color: var(--greyLinesClr);
+    }
+
+    &--active {
+        background-color: #E4EDFD;
+    }
+
+    &__image {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    &__info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__top {
+        flex-grow: 1;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__name {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    &__lastMsg {
+        margin: 0;
+        width: 195px;
+        height: 30px;
+        font-size: 12px;
+        line-height: 15px;
+        color: var(--greyTextClr);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__time {
+        display: block;
+        font-size: 9px;
+        line-height: 13px;
+        color: var(--greyTextClr);
+    }
+
+    &__unreadAmount {
+        margin-top: 8px;
+        margin-left: 5px;
+        flex-shrink: 0;
+        background-color: var(--blueClr);
+        color: #fff;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        line-height: 13px;
+        text-align: center;
+    }
+    
+}

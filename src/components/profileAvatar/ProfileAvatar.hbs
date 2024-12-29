@@ -1,0 +1,10 @@
+<div class="profile__avatar avatar {{#if avatarName}} profile__avatar--noNameText {{/if}}">
+    <div id="profileAvatarImg" class="avatar__image" data-forEventName="image">
+        <div class="avatar__overlay">
+            <span class="avatar__overlayText">{{ changeAvatarText }}</span>
+        </div>
+    </div>
+    {{#if avatarName }}
+        <p class="avatar__text">{{ avatarName }}</p>
+    {{/if}}
+</div>

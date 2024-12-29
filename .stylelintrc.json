@@ -1,0 +1,16 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "color-hex-length": "short",
+      "selector-class-pattern": null,
+      "custom-property-pattern": null,
+      "alpha-value-notation": "percentage",
+      "at-rule-no-unknown": null
+    },
+    "ignoreFiles": [
+      "build/*",
+      "node_modules/*",
+      "public/*",
+      "dist/*"
+    ]
+  } 

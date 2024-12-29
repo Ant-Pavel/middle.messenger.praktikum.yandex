@@ -2,18 +2,16 @@
     <main class="logIn__container">
         <div class="form__wrap">
             <h1 class="form__title">Вход</h1>
-            <form class="logIn__form form">
-                {{#each logIn.controls }}
-                    {{> FormControl }}
-                {{/each}}
+            <form class="logIn__form form" data-forEventName="formElement">
+                {{{ formControls }}}
                 <div class="form__buttonWrap logIn__formBtnWrap">
-                    {{> Button id="logInBtn" text="Авторизоваться" }}
+                    {{{ button }}}
                 </div>
                 <div class="form__action">
-                    {{> ActionLink id="loginInNoAccountLink" text="Нет аккаунта?" }}
+                    {{{ enterLink }}}
                 </div>
             </form>
         </div>
     </main>
+    {{{ pagesNavigation  }}}
 </div>
-{{> PagesNavigation  }}
