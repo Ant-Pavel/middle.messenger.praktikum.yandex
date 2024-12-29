@@ -45,5 +45,4 @@ export default class FormControl extends Block {
   render() {
     return rawTemplate;
   }
-
 }

@@ -20,5 +20,3 @@ export default class ActionLink extends Block {
     return rawTemplate;
   }
 }
-
-
