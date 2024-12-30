@@ -17,7 +17,7 @@ export default class ChatMsgForm extends Block {
           event.preventDefault();
 
           const formData = Array.from((event.target as HTMLFormElement).elements)
-            .filter(({ tagName }) => tagName === 'INPUT')
+            .filter(({ tagName }) => tagName === 'TEXTAREA')
             .map(({ name, value }: HTMLInputElement) => ({ name, value }));
 
           const notValidFields = formData.filter(({ name, value }: { name: string, value: string }) => {
@@ -28,10 +28,6 @@ export default class ChatMsgForm extends Block {
             console.log('Form is valid', formData);
           } else {
             console.log(`Form is not valid. Not valid fields - ${notValidFields.map(({ name }) => name).join(', ')}`);
-            notValidFields.forEach(({ name, value }) => {
-              const controlBlock = this.lists.formControls.find(fc => fc.publicId === name);
-              controlBlock?.setProps({ hint: 'Невалидное значение', value });
-            });
           }
         },
       },

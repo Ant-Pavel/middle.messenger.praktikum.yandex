@@ -3,7 +3,7 @@ const METHODS = {
   POST: 'POST',
   PUT: 'PUT',
   DELETE: 'DELETE',
-};
+} as const ;
 
 interface Options {
   method?: string;
@@ -23,21 +23,23 @@ function makeQueryStringFromObject(data: Record<string, string | number | boolea
   }, '?');
 }
 
+type HTTPMethod = (url: string, options?: Options) => Promise<XMLHttpRequest>;
+
 class HTTPTransport {
-  get = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+  get: HTTPMethod = (url, options = {}) => {
     const urlWithQueryString = !options.data ? url : `${url}${makeQueryStringFromObject(options.data)}`;
     return this.request(urlWithQueryString, { ...options, method: METHODS.GET }, options.timeout);
   };
 
-  post = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+  post: HTTPMethod = (url, options = {}) => {
     return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
   };
 
-  put = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+  put: HTTPMethod = (url, options = {}) => {
     return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
   };
 
-  delete = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+  delete: HTTPMethod = (url, options = {}) => {
     return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
   };
 

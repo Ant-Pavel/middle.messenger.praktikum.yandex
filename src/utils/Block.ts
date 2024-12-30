@@ -21,13 +21,13 @@ type Children = Record<string, Block>;
 type Lists = Record<string, Block[]>;
 type DataProps = Props;
 
-export default class Block {
+export default abstract class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
 
   private _element: HTMLElement | null = null;
 

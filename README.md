@@ -14,4 +14,4 @@
 
 ### На веб-приложение:
 
-Netlify: https://67553853e75d2e317d7b0869--dfhju234hhfgf.netlify.app/
+Netlify: https://dfhju234hhfgf.netlify.app/
