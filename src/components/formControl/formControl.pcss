@@ -1,0 +1,45 @@
+@define-mixin shrinkLabel {
+    top: 0;
+    font-size: 9px;
+    line-height: 12px;
+}
+
+.formControl {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding-top: 10px;
+
+    &__label {
+        position: absolute;
+        top: 13px;
+        font-size: 13px;
+        line-height: 15px;
+        color: var(--greyTextClr);
+    }
+
+    &--hasValue &__label {
+        @mixin shrinkLabel
+    }
+    
+    &--focused &__label {
+        @mixin shrinkLabel
+    }
+
+    &__input {
+        margin: 5px 0;
+        padding: 5px 5px 0;
+        padding-block: 0;
+        padding-inline: 0;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid var(--blueClr);
+    }
+
+    &__hint {
+        font-size: 9px;
+        line-height: 12px;
+        color: var(--redClr);
+    }
+}
