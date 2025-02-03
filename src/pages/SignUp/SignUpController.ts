@@ -9,16 +9,23 @@ class LogInController {
       const dataToSend = Object.fromEntries(formData.map(({ name, value }) => {
         return [name, value];
       }));
-      const res: XMLHttpRequest = await authApi.signUp(dataToSend as SignUpRequestData);
-      if (res.status === 200) {
+      const signUpResponse = await authApi.signUp(dataToSend as SignUpRequestData);
+      const { status, response } = signUpResponse as { status: number, response: string };
+      if (status === 200) {
         const router = new Router();
         router.go('/');
-        return { status: res.status, responseObj: JSON.parse((res.response as string)) as { id: string } };
+        return { status, text: '' };
+      } if (String(status).startsWith('4')) {
+        return { status, text: (JSON.parse(response) as { reason: string }).reason };
       }
-      return { status: res.status, responseObj: JSON.parse((res.response as string)) as { reason: string } };
     } catch (error) {
       console.log(error);
     }
+  }
+
+  goToLogInPage() {
+    const router = new Router();
+    router.go('/');
   }
 }
 

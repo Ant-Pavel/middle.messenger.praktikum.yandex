@@ -6,6 +6,7 @@ import Block from '../../utils/Block';
 import rawTemplate from './SignUp.hbs?raw';
 import formValidation from '../../utils/formValidation';
 import SignUpController from './SignUpController';
+import ActionLink from '@/components/actionLink';
 
 type SignInProps = {
   signUpControls: ((ConstructorParameters<typeof FormControl>)[0])[],
@@ -30,6 +31,19 @@ export default class Profile extends Block {
           publicId: item.inputName,
         });
       }),
+      enterLink: new ActionLink(
+        {
+          id: 'signInEntranceLink',
+          text: 'Войти',
+          link: 'LogIn',
+          events: {
+            click: function (event: Event) {
+              event.preventDefault();
+              SignUpController.goToLogInPage();
+            },
+          },
+        },
+      ),
       events: {
         'formElement.submit': async (event: Event) => {
           event.preventDefault();
@@ -44,14 +58,17 @@ export default class Profile extends Block {
           });
           if (!notValidFields.length) {
             console.log('Form is valid', formData);
-            const res = await SignUpController.signUp(formData);
-            if (!res) return;
-            const { status, responseObj } = res;
+            const signUpRes = await SignUpController.signUp(formData);
+            if (!signUpRes) {
+              this.setMsg('Что-то пошло не так. Попробуйте позже');
+              return;
+            }
+            const { status, text } = signUpRes;
             if (status === 200) {
               this.cleanFields();
-              this.setMsg('');
+              this.setMsg(text);
             } else {
-              this.setMsg(`Упс, что-то пошло не так. ${(responseObj as { reason: string }).reason}`);
+              this.setMsg(text);
             }
           } else {
             console.log(`Form is not valid. Not valid fields - ${notValidFields.map(({ name }) => name).join(', ')}`);

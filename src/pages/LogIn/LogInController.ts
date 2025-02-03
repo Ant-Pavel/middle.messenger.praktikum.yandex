@@ -12,13 +12,16 @@ class LogInController {
         return [name, value];
       }));
       const signInResponse = await authApi.signIn(dataToSend as SignInRequestData);
-      if (signInResponse === 200) {
+      const { status, response } = signInResponse as { status: number, response: string };
+      if (status === 200) {
         const getUserResponse = await authApi.getUser();
         store.set('userInfo', getUserResponse);
         const router = new Router();
         router.go('/settings');
+        return { status, text: '' };
+      } if (String(status).startsWith('4')) {
+        return { status, text: (JSON.parse(response) as { reason: string }).reason };
       }
-      return signInResponse;
     } catch (error) {
       console.log(error);
     }

@@ -38,7 +38,7 @@ class AuthApi {
       disableAnauthorizedRedirect: true
 
     });
-    return res.status;
+    return res;
   }
 
   async logOut() {
