@@ -2,7 +2,7 @@ import Block from '@/utils/Block';
 import type { Props } from '@/utils/Block';
 import '../common.pcss';
 import './deleteChatModal.pcss';
-import rawTemplate from './deleteChatModal.hbs?raw';
+import rawTemplate from './DeleteChatModal.hbs?raw';
 import Button from '@/components/button';
 import ItemSelector from '@/components/itemSelector';
 import store, { StoreState } from '@/utils/Store';
