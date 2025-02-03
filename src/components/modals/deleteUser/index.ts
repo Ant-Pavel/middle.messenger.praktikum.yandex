@@ -2,7 +2,7 @@ import Block from '@/utils/Block';
 import type { Props } from '@/utils/Block';
 import '../common.pcss';
 import './deleteUserModal.pcss';
-import rawTemplate from './deleteUserModal.hbs?raw';
+import rawTemplate from './DeleteUserModal.hbs?raw';
 import Button from '@/components/button';
 import ItemSelector from '@/components/itemSelector';
 import store, { StoreState, OpenedChatObj } from '@/utils/Store';
