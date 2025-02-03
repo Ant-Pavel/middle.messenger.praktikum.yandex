@@ -46,13 +46,17 @@ export default class LogIn extends Block {
             return !formValidation[name as keyof typeof formValidation](value);
           });
           if (!notValidFields.length) {
-            console.log('Form is valid', formData);
-            const res = await LogInController.logIn(formData);
-            if (res === 200) {
+            const logInRes = await LogInController.logIn(formData);
+            if (!logInRes) {
+              this.setMsg('Что-то пошло не так. Попробуйте позже');
+              return;
+            }
+            const { status, text } = logInRes;
+            if (status === 200) {
               this.cleanFields();
-              this.setMsg('');
-            } else if (res === 401) {
-              this.setMsg('Неверный логин или пароль');
+              this.setMsg(text);
+            } else {
+              this.setMsg(text);
             }
           } else {
             console.log(`Form is not valid. Not valid fields - ${notValidFields.map(({ name }) => name).join(', ')}`);

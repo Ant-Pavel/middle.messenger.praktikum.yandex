@@ -8,7 +8,9 @@ export default class EventBus {
   private listeners: EventBusCallbacks;
 
   constructor() {
-    this.listeners = {};
+    this.listeners = {
+      updated: []
+    };
   }
 
   on(event: string, callback: EventBusCallback): void {

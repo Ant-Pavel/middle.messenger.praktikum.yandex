@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         value: getUserResponse[inputName as keyof typeof getUserResponse]
       };
     }));
-    if (window.location.pathname === '/' || window.location.pathname === '/sign-up') {
+    if (window.location.pathname === '/') {
       router.go('/messenger');
     }
   } else if (window.location.pathname !== '/sign-up') {
