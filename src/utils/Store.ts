@@ -24,6 +24,16 @@ export type UserInfoObj = {
   'email': string
 };
 
+export type OpenedChatObj = {
+  id: string;
+  title: string;
+  avatar: string | null;
+  users: Array<{
+    id: number;
+    login: string;
+  }>;
+};
+
 export type StoreState = {
   profileControls:{
     label: string;
@@ -45,15 +55,7 @@ export type StoreState = {
 
   chatList: Array<ChatPlankProps>;
 
-  currentOpenedChat: {
-    id: string;
-    title: string;
-    avatar: string | null;
-    users: Array<{
-      id: string;
-      login: string;
-    }>;
-  } | null;
+  currentOpenedChat: OpenedChatObj | null;
 
   // cop - текущий открытый чат
   cop_hasUnshownMessages: boolean;        // флаг для подгрузки сообщений из истории

@@ -5,7 +5,7 @@ import './deleteUserModal.pcss';
 import rawTemplate from './deleteUserModal.hbs?raw';
 import Button from '@/components/button';
 import ItemSelector from '@/components/itemSelector';
-import store, { StoreState } from '@/utils/Store';
+import store, { StoreState, OpenedChatObj } from '@/utils/Store';
 import connect from '@/utils/connectStoreToComponent';
 
 interface ModalProps extends Props {
@@ -37,7 +37,7 @@ class DeletChatModal extends Block {
         }
       }),
       itemSelector: new ItemSelector({
-        items: store.getState().currentOpenedChat ? store.getState().currentOpenedChat.users.map(({ id, login }) => ({ id, name: login })) : [],
+        items: store.getState().currentOpenedChat ? (store.getState().currentOpenedChat as OpenedChatObj).users.map(({ id, login }) => ({ id, name: login })) : [],
         hint: props.itemSelectorHint,
         events: {
           'click': (event: Event) => {
@@ -74,7 +74,7 @@ class DeletChatModal extends Block {
       disabled: false
     });
     this.children.itemSelector.setProps({
-      items: store.getState().currentOpenedChat.users.map(({ id, login }) => ({ id, name: login, chosen: String(id) === userId }))
+      items: store.getState().currentOpenedChat ? (store.getState().currentOpenedChat as OpenedChatObj).users.map(({ id, login }) => ({ id, name: login, chosen: String(id) === userId })) : []
     });
   }
 }

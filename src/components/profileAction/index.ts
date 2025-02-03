@@ -3,7 +3,7 @@ import rawTemplate from './ProfileAction.hbs?raw';
 import ActionLink from '../actionLink';
 
 type ProfileActionProps = (ConstructorParameters<typeof ActionLink>)[0] & {
-  actionClickHandler?: (...args: unknown[]) => void
+  actionClickHandler: (event: Event) => void
 };
 
 export default class ProfileAction extends Block {

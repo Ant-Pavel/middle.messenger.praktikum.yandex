@@ -3,7 +3,7 @@ import './itemSelector.pcss';
 import rawTemplate from './ItemSelector.hbs?raw';
 
 interface ItemSelectorProps extends Props {
-  items: { id: string, name: string, chosen?: boolean }[],
+  items: { id: number, name: string, chosen?: boolean }[],
   hint?: string;
 }
 
