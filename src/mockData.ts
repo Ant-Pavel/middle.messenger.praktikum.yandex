@@ -1,5 +1,13 @@
 export const profile = {
   name: 'Иван',
+  profileFieldsNames: {
+    'email': 'Почта',
+    'first_name': 'Имя',
+    'second_name': 'Фамилия',
+    'login': 'Логин',
+    'display_name': 'Имя в чате',
+    'phone': 'Телефон'
+  },
   fields: [
     { name: 'Почта', value: 'pochta@yandex.ru' },
     { name: 'Логин', value: 'ivanivanov' },
@@ -95,48 +103,48 @@ export const profile = {
 
 export type Profile = typeof profile;
 
-export const signIn = {
+export const signUp = {
   controls: [
     {
       label: 'Почта',
       type: 'email',
-      value: 'pochta@yandex.ru',
+      value: '',
       inputName: 'email',
     },
     {
       label: 'Логин',
       type: 'text',
-      value: 'ivanivanov',
+      value: '',
       inputName: 'login',
     },
     {
       label: 'Имя',
       type: 'text',
-      value: 'Иван',
+      value: '',
       inputName: 'first_name',
     },
     {
       label: 'Фамилия',
       type: 'text',
-      value: 'Иванов',
+      value: '',
       inputName: 'second_name',
     },
     {
       label: 'Телефон',
       type: 'tel',
-      value: '+7 (909) 967 30 30',
+      value: '',
       inputName: 'phone',
     },
     {
       label: 'Пароль',
       type: 'password',
-      value: '+7 (909) 967 30 30',
+      value: '',
       inputName: 'passwordFirst',
     },
     {
       label: 'Пароль (еще раз)',
       type: 'password',
-      value: '+7 (909) 967 30 30',
+      value: '',
       hint: 'Пароли не совпадают',
       inputName: 'password',
     },
@@ -148,14 +156,14 @@ export const logIn = {
     {
       label: 'Логин',
       type: 'text',
-      value: 'ivanivanov',
+      value: '',
       hint: 'Неверный логин',
       inputName: 'login',
     },
     {
       label: 'Пароль',
       type: 'password',
-      value: '+7 (909) 967 30 30',
+      value: '',
       inputName: 'password',
     },
   ],

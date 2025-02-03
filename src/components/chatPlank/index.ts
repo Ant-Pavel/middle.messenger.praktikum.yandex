@@ -3,23 +3,18 @@ import './chatPlank.pcss';
 import rawTemplate from './ChatPlank.hbs?raw';
 
 export interface ChatPlankProps {
-  id: string;
-  isActive: boolean;
-  avatarImgUrl?: string;
-  name: string;
-  time?: string;
-  unreadAmount?: string;
-  chatItemClick: (event: Event) => void
+  id: number;
+  avatar?: string;
+  title: string;
+  unread_count?: number;
+  lastMsgTime?: string;
+  lastMsgContent?: string;
+  [key: string]: unknown;
 }
 
 export default class ChatPlank extends Block {
   constructor(props: ChatPlankProps) {
-    super({
-      ...props,
-      events: {
-        'click': props.chatItemClick,
-      },
-    });
+    super(props);
   }
 
   render() {

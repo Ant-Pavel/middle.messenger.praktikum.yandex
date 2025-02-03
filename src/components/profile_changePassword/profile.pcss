@@ -1,0 +1,83 @@
+.profilePage {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    min-height: 100vh;
+}
+
+.profile {
+    &__container {
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    &__avatar {
+        margin: 60px auto;
+    
+        &--noNameText {
+            margin-bottom: 90px;
+        }
+    }
+
+    &__info {
+        margin-bottom: 60px;
+    }
+
+    &__actions {
+        margin-bottom: 60px;
+    }
+
+    &__action {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    &__action:not(:last-child) {
+        border-bottom: 1px solid var(--greyLinesClr);
+    }
+
+    &__saveBtnWrap {
+        text-align: center;
+    }
+}
+
+
+@media screen and (width >= 550px) {  
+    .profile__container {
+        width: 530px;
+    }
+}
+
+.action__text {
+    cursor: pointer;
+    font-size: 13px;
+
+    &--blue {
+        color: var(--blueClr);
+
+        &:hover {
+            color: darkblue;
+        }
+    }
+
+    &--red {
+        color: var(--redClr);
+
+        &:hover {
+            color: darkred;
+        }
+    }
+}
+
+.editProfileForm {
+    &__buttonWrap {
+        margin-top: 60px;
+        text-align: center;
+    }
+}
+
+.editProfilePasswordForm {
+    &__buttonWrap {
+        margin-top: 160px;
+        text-align: center;
+    }
+}

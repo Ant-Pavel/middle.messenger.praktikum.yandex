@@ -1,14 +1,25 @@
 <main class="chatPage__container">
     <div class="chatPage__left">
-        <div class="profileLink__wrap">
-            <a href="#" id="chatProfileLink" class="profileLink" data-forEventName="profileLink">
-                <span>Профиль</span>
-                <svg class="profileLink__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15"
-                    height="15">
-                    <title>chevron-right</title>
-                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+        <div class="chat__panel chatPanel">
+            <button class="chat__actionsBtn chat__actionsBtn--chatPanel chat__actionsBtn--active" data-forEventName="chatListMenuBtn">
+                <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1E1E1E">
+                    <title>dots-vertical</title>
+                    <path
+                        d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
                 </svg>
-            </a>
+            </button>
+
+            {{!-- <button class="chatPanel__addBtn" data-forEventName="addChatBtn">Add chat</button> --}}
+            <div class="profileLink__wrap">
+                <a id="chatProfileLink" class="profileLink" data-forEventName="profileLink">
+                    <span>Профиль</span>
+                    <svg class="profileLink__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15"
+                        height="15">
+                        <title>chevron-right</title>
+                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                    </svg>
+                </a>
+            </div>
         </div>
         <div class="chat__search">
             <div class="searchInput__wrap {{#if chatSearchInputValue}}searchInput__wrap--hasValue{{else}}''{{/if}}">
@@ -23,33 +34,40 @@
                 </label>
             </div>
         </div>
-        <ul class="chat__list">
-            {{{ chatList }}}
-        </ul>
+        {{{ chatPlankList }}}
     </div>
     <div class="chatPage__right chat">
-        <header class="chat__header">
-            <img class="chat__avatar" width="35" height="35"
-                src="{{avatarImgUrl}}"
-                alt="chat avatar">
-            <h2 class="chat__title">Вадим</h2>
-            <button class="chat__actionsBtn chat__actionsBtn--active" data-forEventName="chatMenuBtn">
-                <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1E1E1E">
-                    <title>dots-vertical</title>
-                    <path
-                        d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
-                </svg>
-            </button>
-        </header>
-        <main class="chat__content">
-            {{{ chatGroups }}}
-        </main>
-        <div class="chat__footer">
-            {{{ chatMsgForm }}}
-        </div>
-        {{{ appendMenu }}}
-        {{{ chatUsersMenu }}}
+        {{#if currentOpenedChat}}
+            <header class="chat__header">
+                <img class="chat__avatar" width="35" height="35"
+                    src="{{userAvatar}}"
+                    alt="chat avatar">
+                <h2 class="chat__title">{{ chatTitle }}</h2>
+                <button class="chat__actionsBtn chat__actionsBtn--active" data-forEventName="chatUsersMenuBtn">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1E1E1E">
+                        <title>dots-vertical</title>
+                        <path
+                            d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
+                    </svg>
+                </button>
+            </header>
+            {{{ chatMsgList }}}
+            <div class="chat__footer">
+                {{{ chatMsgForm }}}
+            </div>
+            {{{ appendFileMenu }}}
+            {{{ chatUsersMenu }}}
+        {{else}}
+            <div class="chat__notChosenWrap">
+                <p class="chat__notChosenMsg">Выберите чат чтобы отправить сообщение</p>
+            </div>
+        {{/if}}
     </div>
-    {{{ pagesNavigation }}}
+    {{{ chatListMenu }}}
+    {{{ addChatModal }}}
+    {{{ addUserModal }}}
+    {{{ deleteUserModal }}}
+    {{{ deleteChatModal }}}
+    {{{ uploadImageMsgModal }}}
 </main>
 

@@ -1,63 +1,39 @@
-import { profile, signIn, logIn, navigationList, chatList } from './mockData';
-
+import Router from '@/utils/Router';
+import { profile, signUp, logIn } from './mockData';
+import store from '@/utils/Store';
+import authApi from './api/auth-api';
 import Profile from './pages/Profile';
-import ChangeProfileData from './pages/ChangeProfileData';
 import Chat from './pages/Chat';
-import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
-import Page404 from './pages/Page404';
-import Page500 from './pages/Page500';
-import ChangeProfilePassword from './pages/ChangeProfilePassword';
 
-let currentPage = 'ChangeProfileData';
+const commonProps = {
+  changePage: () => { },
+};
 
-function changePage(pageId: string) {
-  currentPage = pageId;
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  render();
-}
+document.addEventListener('DOMContentLoaded', async () => {
+  const getUserResponse = await authApi.getUser();
 
+  const router = new Router('#app');
+  router
+    .use('/', LogIn, { logInControls: logIn.controls, ...commonProps })
+    .use('/sign-up', SignUp, { signUpControls: signUp.controls, ...commonProps })
+    .use('/messenger', Chat)
+    .use('/settings', Profile, { profileActions: profile.actions, profileFields: profile.fields, changeProfilePasswordControls: profile.changeProfilePasswordControls, changeProfileInfoControls: profile.changeProfileInfoControls, ...commonProps })
+    .start();
 
-function render() {
-  const app = document.getElementById('app') as HTMLDivElement;
-  let page;
-
-  const commonProps = {
-    navigationList,
-    changePage,
-  };
-
-  if (currentPage === 'Profile') {
-    const { actions: profileActions, fields: profileFields } = profile;
-    page = new Profile({ profileActions, profileFields, ...commonProps });
-  } else if (currentPage === 'ChangeProfileData') {
-    const { changeProfileInfoControls } = profile;
-    page = new ChangeProfileData({ changeProfileInfoControls, ...commonProps });
-  } else if (currentPage === 'ChangeProfilePassword') {
-    const { changeProfilePasswordControls } = profile;
-    page = new ChangeProfilePassword({ changeProfilePasswordControls, ...commonProps });
-  } else if (currentPage === 'Chat') {
-    page = new Chat({ chatList, ...commonProps });
-  } else if (currentPage === 'SignIn') {
-    page = new SignIn({ signInControls: signIn.controls, ...commonProps });
-  } else if (currentPage === 'LogIn') {
-    page = new LogIn({ logInControls: logIn.controls, ...commonProps });
-  } else if (currentPage === 'Page404') {
-    page = new Page404({ ...commonProps });
-  } else if (currentPage === 'Page500') {
-    page = new Page500({ ...commonProps });
-  }
-
-  if (!page) return;
-
-  if (app.firstElementChild) {
-    app.firstElementChild.replaceWith(page.getContent());
+  if (getUserResponse && getUserResponse.id) {
+    store.set('userInfo', getUserResponse);
+    store.set('profileTableData', store.getState().profileControls.map(({ inputName, label }) => {
+      return {
+        name: label,
+        value: getUserResponse[inputName as keyof typeof getUserResponse]
+      };
+    }));
+    if (window.location.pathname === '/' || window.location.pathname === '/sign-up') {
+      router.go('/messenger');
+    }
   } else {
-    app.appendChild(page.getContent());
+    router.go('/');
   }
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  render();
 });

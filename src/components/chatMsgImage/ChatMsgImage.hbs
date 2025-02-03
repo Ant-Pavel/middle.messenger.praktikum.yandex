@@ -1,6 +1,9 @@
-<article class="chat__msg chat__msg--image chat__msg--others">
+<article class="chat__msg chat__msg--image {{#if isMine}}chat__msg--mine{{else}}chat__msg--others{{/if}}">
+    {{#if showUserName}}
+    <div class="chat__msgAuthor">{{ userLogin }}</div>
+    {{/if}}
     <img class="chat__msgImg" width="100" height="100"
         src="{{ src }}"
         alt="chat message image">
-    <span class="chat__msgTimeImg">{{ time }}</span>
+    <span class="chat__msgTimeImg">{{ chatTimeStr }}</span>
 </article>

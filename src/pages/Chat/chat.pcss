@@ -30,8 +30,6 @@
     text-decoration: none;
 
     &__wrap {
-        margin-bottom: 20px;
-        padding: 0 10px;
         text-align: right;
     }
 
@@ -48,6 +46,14 @@
 }
 
 .chat {
+    &__panel {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+    }
+
     &__search {
         padding: 0 10px;
         margin-bottom: 15px;
@@ -87,17 +93,22 @@
 
     &__actionsBtn {
         display: flex;
+        margin-left: auto;
         padding: 0;
         border: none;
         border-radius: 50%;
         background-color: transparent;
         justify-content: center;
         align-items: center;
-        margin-left: auto;
         outline: none;
         width: 30px;
         height: 30px;
         cursor: pointer;
+    }
+
+    &__actionsBtn--chatPanel {
+        margin-left: 0;
+        margin-right: auto;
     }
 
     &__actionsBtn--active {
@@ -122,14 +133,17 @@
         padding: 10px 0;
     }
     
-    &__notSelectedText {
+    
+    &__notChosenWrap {
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    &__notChosenMsg {
         color: var(--greyTextClr);
         text-align: center;
-    
     }
 }
 

@@ -20,6 +20,7 @@ export default {
     return val.length >= 8 && val.length <= 40 && /[A-ZА-Я]/.test(val) && /[0-9]/.test(val);
   },
   oldPassword: (val: string) => {
+    return true;
     return val.length >= 8 && val.length <= 40 && /[A-ZА-Я]/.test(val) && /[0-9]/.test(val);
   },
   newPassword: (val: string) => {

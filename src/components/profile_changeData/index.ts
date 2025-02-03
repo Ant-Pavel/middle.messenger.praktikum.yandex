@@ -1,36 +1,28 @@
-import './signIn.pcss';
+import './profile.pcss';
 import Button from '../../components/button';
 import FormControl from '../../components/formControl';
-import ActionLink from '../../components/actionLink';
-import PagesNavigation from '../../components/pagesNavigation';
 import Block from '../../utils/Block';
-import rawTemplate from './SignIn.hbs?raw';
+import rawTemplate from './Profile_changeData.hbs?raw';
 import formValidation from '../../utils/formValidation';
+import connect from '@/utils/connectStoreToComponent';
+import store, { StoreState, UserInfoObj } from '@/utils/Store';
 
-type SignInProps = {
-  signInControls: ((ConstructorParameters<typeof FormControl>)[0])[],
-  changePage: (pageId: string) => void,
-  navigationList: ((ConstructorParameters<typeof PagesNavigation>)[0])['navigationList']
+type ChangeProfileProps = {
+  saveDataHandler: (data: { name: string, value: string }[]) => void;
 };
 
-export default class Profile extends Block {
-  constructor(props: SignInProps) {
+class ProfileChangeData extends Block {
+  constructor(props: ChangeProfileProps) {
     super({
       ...props,
       button: new Button({
-        id: 'signInBtn',
-        text: 'Зарегистрироваться',
+        id: 'saveProfileChanges',
+        text: 'Сохранить',
         type: 'submit',
       }),
-      formControls: props.signInControls.map(function (item) {
-        return new FormControl({
-          label: item.label,
-          type: item.type,
-          value: item.value,
-          inputName: item.inputName,
-          publicId: item.inputName,
-        });
-      }),
+      formControls: store.getState().userInfo ? store.getState().profileControls.map((controlSettings) => {
+        return new FormControl({ ...controlSettings, value: (store.getState().userInfo as UserInfoObj)[controlSettings.inputName as keyof UserInfoObj] as string });
+      }) : [],
       events: {
         'formElement.submit': (event: Event) => {
           event.preventDefault();
@@ -45,6 +37,7 @@ export default class Profile extends Block {
           });
           if (!notValidFields.length) {
             console.log('Form is valid', formData);
+            props.saveDataHandler(formData);
           } else {
             console.log(`Form is not valid. Not valid fields - ${notValidFields.map(({ name }) => name).join(', ')}`);
             notValidFields.forEach(({ name, value }) => {
@@ -53,24 +46,7 @@ export default class Profile extends Block {
             });
           }
         },
-      },
-      enterLink: new ActionLink(
-        {
-          id: 'signInEntranceLink',
-          text: 'Войти',
-          link: 'LogIn',
-          events: {
-            click: function (event: Event) {
-              event.preventDefault();
-              const link = (event.target as HTMLElement).dataset.link;
-              if (link) {
-                props.changePage(link);
-              }
-            },
-          },
-        },
-      ),
-      pagesNavigation: new PagesNavigation({ navigationList: props.navigationList, changePage: props.changePage }),
+      }
     });
   }
 
@@ -78,3 +54,19 @@ export default class Profile extends Block {
     return rawTemplate;
   }
 }
+
+export default connect(
+  ProfileChangeData,
+  (state: Record<string, unknown>) => {
+    return {
+      userInfo: state.userInfo
+    };
+  },
+  function (this: ProfileChangeData, state: StoreState) {
+    this.setLists({
+      formControls: state.profileControls.map((controlSettings) => {
+        return new FormControl({ ...controlSettings, value: (state.userInfo as UserInfoObj)[controlSettings.inputName as keyof UserInfoObj] as string });
+      })
+    });
+  }
+);

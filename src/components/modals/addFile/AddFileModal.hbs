@@ -1,0 +1,34 @@
+<div class="dialog__wrap">
+    <div class="dialog__overlay" data-forEventName="overlay">
+        <div class="dialog__holder">
+            <div class="dialog dialog--addFile">
+                <div class="dialog__title">{{ header }}</div>
+                <form data-forEventName="modalForm">
+                    <div class="dialog__content">
+                        <div class="dialog__fileInput fileInput">
+                            {{#if hasFile}}
+                            <span class="fileInput__chosenFileName">{{ chosenFileName }}</span>
+                            {{else}}
+                            <label for="fileInput" class="fileInput__label">Выбрать файл на компьютере</label>
+                            <input id="fileInput" type="file" name="{{fileInputName}}" data-forEventName="userAvatarInput" accept="image/png, image/jpeg"
+                                hidden />
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="dialog__actions">
+                        <div class="dialog__actionBtnWrap ">
+                            {{{ button }}}
+                        </div>
+                    </div>
+                    <div class="dialog__messages">
+                        <span class="dialog__message">
+                            {{#if hint }}
+                                {{ hint }}
+                            {{/if}}
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

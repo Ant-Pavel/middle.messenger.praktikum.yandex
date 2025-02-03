@@ -2,7 +2,9 @@ import Block from '../../utils/Block';
 import rawTemplate from './ProfileAction.hbs?raw';
 import ActionLink from '../actionLink';
 
-type ProfileActionProps = (ConstructorParameters<typeof ActionLink>)[0];
+type ProfileActionProps = (ConstructorParameters<typeof ActionLink>)[0] & {
+  actionClickHandler: (event: Event) => void
+};
 
 export default class ProfileAction extends Block {
   constructor(props: ProfileActionProps) {
@@ -10,13 +12,13 @@ export default class ProfileAction extends Block {
       ...props,
       actionLink: new ActionLink(
         {
-          id: props.id,
-          text: props.text,
+          ...props,
           attrs: {
             style: 'font-size: 13px;',
           },
-          link: props.link,
-          events: props.events,
+          events: {
+            click: props.actionClickHandler
+          }
         },
       ),
     });

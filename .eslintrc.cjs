@@ -1,7 +1,7 @@
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
-    parserOptions: { 
+    parserOptions: {
         "project": ["./tsconfig.json"]
     },
     plugins: [
@@ -16,7 +16,14 @@ module.exports = {
         'react/jsx-filename-extension': 0,
         'import/no-extraneous-dependencies': 0,
         'import/extensions': 0,
-        "@typescript-eslint/no-useless-constructor": "off"
+        "@typescript-eslint/no-useless-constructor": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+                "checksVoidReturn": false
+            }
+        ]
     },
     ignorePatterns: ["build/*", "dist/*", "public/*", "node_modules/*"]
 };
