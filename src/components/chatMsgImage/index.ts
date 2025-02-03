@@ -1,13 +1,17 @@
 import Block from '../../utils/Block';
-import './chatMsgImage.pcss';
+// import './chatMsgImage.pcss';
 import rawTemplate from './ChatMsgImage.hbs?raw';
 
 export type ChatMsgImageProps = {
-  type: 'image';
+  type: 'file';
+  user_id: number;
   src: string;
-  time: string;
-  status: string;
+  chatTimeStr: string;
   isMine: boolean;
+  userLogin: string;
+  showUserName: boolean;
+  time: Date;
+  [key: string]: unknown;
 };
 
 export default class ChatMsgText extends Block {

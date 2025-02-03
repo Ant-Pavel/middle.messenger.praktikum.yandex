@@ -1,32 +1,41 @@
 
 .chat {
     &__msg {
+        max-width: 43%;
         margin-bottom: 10px;
     }
 
     &__msg--mine {
         align-self: flex-end;
-        background-color: #E4EDFD;
     }
-    
-    &__msg--mine.chat__msg--text {
-        border-radius: 15px;
-        border-bottom-right-radius: 0;
-    }
-    
-    &__msg--others + .chat__msg--mine {
+     
+    &__msg--others + &__msg--mine {
         margin-top: 30px;
     }
+
+    &__msg--mine + &__msg--others {
+        margin-top: 30px;
+    }
+
+    &__msgAuthor {
+        font-size: 11px;
+        line-height: 13px;
+    }
     
-    &__msg--text {
+    &__msgContent {
         position: relative;
-        max-width: 43%;
         padding: 10px;
         padding-right: 60px;
         border-radius: 15px;
         border-top-left-radius: 0;
         background-color: #F8F8F8;
         font-size: 12px;
+    }
+
+    &__msg--mine &__msgContent {
+        border-radius: 15px;
+        border-bottom-right-radius: 0;
+        background-color: #E4EDFD;
     }
     
     &__msg p {

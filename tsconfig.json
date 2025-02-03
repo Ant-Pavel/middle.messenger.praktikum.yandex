@@ -9,7 +9,10 @@
         "noUnusedParameters": true,
         "strictNullChecks": true,
         "allowSyntheticDefaultImports": true,
-        "noEmit": true
+        "noEmit": true,
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
     "include": ["src/**/*.ts", "declarations.d.ts", "eslint.config.js"],
     "exclude": ["node_modules"]

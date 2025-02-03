@@ -1,5 +1,8 @@
 <div class="profile__avatar avatar {{#if avatarName}} profile__avatar--noNameText {{/if}}">
-    <div id="profileAvatarImg" class="avatar__image" data-forEventName="image">
+    <div id="profileAvatarImg" class="avatar__image-wrap" data-forEventName="image">
+        {{#if avatarImage }}
+            <img class="avatar__image" src="{{ avatarImage }}" alt="avatarImage">
+        {{/if}}
         <div class="avatar__overlay">
             <span class="avatar__overlayText">{{ changeAvatarText }}</span>
         </div>

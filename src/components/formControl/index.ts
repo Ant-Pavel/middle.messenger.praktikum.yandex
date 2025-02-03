@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block, { Props } from '../../utils/Block';
 import './formControl.pcss';
 import rawTemplate from './FormControl.hbs?raw';
 import formValidation from '../../utils/formValidation';
@@ -9,7 +9,9 @@ type FormControlProps = {
   value: string;
   inputName: string;
   hint?: string;
-  publicId?: string
+  publicId?: string;
+  checkValidation?: boolean,
+  events?: Props['events']
 };
 
 
@@ -18,18 +20,22 @@ export default class FormControl extends Block {
     super({
       ...props,
       events: {
+        ...props.events,
         'input.focus': () => {
           this.getContent().classList.add('formControl--focused');
         },
         'input.blur': (event: Event) => {
           this.getContent().classList.remove('formControl--focused');
           const { name, value } = event.target as HTMLInputElement;
-          if (!formValidation.hasOwnProperty(name)) throw new Error(`Form submit. Неизвестное поле валидации ${name}`);
-          const isFieldValid = formValidation[name as keyof typeof formValidation](value);
-          if (isFieldValid) {
-            this.setProps({ hint: '', value });
-          } else {
-            this.setProps({ hint: 'Невалидное значение', value });
+          const checkValidation = props.checkValidation !== undefined ? props.checkValidation : true;
+          if (checkValidation) {
+            if (!formValidation.hasOwnProperty(name)) throw new Error(`Form submit. Неизвестное поле валидации ${name}`);
+            const isFieldValid = formValidation[name as keyof typeof formValidation](value);
+            if (isFieldValid) {
+              this.setProps({ hint: '', value });
+            } else {
+              this.setProps({ hint: 'Невалидное значение', value });
+            }
           }
 
           if (value) {

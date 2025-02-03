@@ -8,7 +8,14 @@
     transition-property: background-color;
     transition-duration: 0.25s;
 
-    &:hover {
+    &[disabled] {
+        background: lightgrey;
+        transition: none;
+        color: grey;
+        cursor: default;
+    }
+
+    &:not([disabled]):hover {
         background-color: #1e55e0;
     }
 }

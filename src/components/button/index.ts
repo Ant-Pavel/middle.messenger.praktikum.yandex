@@ -6,6 +6,7 @@ import rawTemplate from './Button.hbs?raw';
 interface ButtonProps extends Props {
   id?: string;
   type?: string;
+  disabled?: boolean; 
   text: string;
 }
 

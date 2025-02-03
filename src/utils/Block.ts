@@ -21,7 +21,7 @@ type Children = Record<string, Block>;
 type Lists = Record<string, Block[]>;
 type DataProps = Props;
 
-export default abstract class Block {
+export default class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -48,7 +48,7 @@ export default abstract class Block {
     this._id = makeUUID();
     const { props, children, lists } = this._handleInitialProps(propsAll);
     this.props = this._makePropsProxy(props);
-    this.children = children;
+    this.children = this._makePropsProxy(children);
     this.lists = this._makePropsProxy(lists);
     if (props.publicId) {
       this.publicId = props.publicId;
@@ -90,6 +90,8 @@ export default abstract class Block {
     return true;
   }
 
+  reset() {}
+
   setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
@@ -104,6 +106,14 @@ export default abstract class Block {
     }
 
     Object.assign(this.lists, nextList);
+  };
+
+  setChildren = (nextChildren: Record<string, Block>): void => {
+    if (!nextChildren) {
+      return;
+    }
+
+    Object.assign(this.children, nextChildren);
   };
 
   get element() {
@@ -198,7 +208,7 @@ export default abstract class Block {
     Object.entries(propsAll).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
-      } else if (Array.isArray(value) && value.every((item) => item instanceof Block)) {
+      } else if (Array.isArray(value) && value.length && value.every((item) => item instanceof Block)) {
         lists[key] = value;
       } else {
         props[key] = value;
@@ -257,10 +267,16 @@ export default abstract class Block {
   }
 
   show() {
-    this.getContent().style.display = 'block';
+    // this.getContent().style.display = 'block';
+    this.getContent().classList.remove('d-none');
   }
 
   hide() {
-    this.getContent().style.display = 'none';
+    // this.getContent().style.display = 'none';
+    this.getContent().classList.add('d-none');
+  }
+
+  toggleVisibility() {
+    this.getContent().classList.toggle('d-none');
   }
 }

@@ -1,119 +1,110 @@
 import './chat.pcss';
-import Block from '../../utils/Block';
+import Block, { Props } from '../../utils/Block';
 import rawTemplate from './Chat.hbs?raw';
-import ChatPlank,  { type ChatPlankProps } from '../../components/chatPlank';
-import ChatMsgGroup from '../../components/chatMsgGroup';
+import ChatPlankList from '@/components/chatPlankList';
+import ChatMsgList from '@/components/chatMsgList';
 import chatMsgForm from '../../components/chatMsgForm';
-import PagesNavigation from '../../components/pagesNavigation';
 import Menu from '../../components/menu';
+import addChatModal from '@/components/modals/addChat';
+import DeleteChatModal from '@/components/modals/deleteChat';
+import DeleteUserModal from '@/components/modals/deleteUser';
+import addUserModal from '@/components/modals/addUser';
+import addFileModal from '../../components/modals/addFile';
+import ChatController from './ChatController';
+import connect from '@/utils/connectStoreToComponent';
+import { StoreState } from '@/utils/Store';
+import Router from '@/utils/Router';
 
-type ChatProps = {
-  chatList: (Omit<ChatPlankProps, 'chatItemClick'>)[]
-  changePage: (pageId: string) => void,
-  navigationList: ((ConstructorParameters<typeof PagesNavigation>)[0])['navigationList']
-};
 
-const appendMenu = new Menu({
-  attrs: {
-    style: 'bottom: 75px; left: 310px;',
-  },
-  items: [
-    { icon: 'mediaIcon', name: 'Фото или Видео' },
-    { icon: 'folderIcon', name: 'Файл' },
-    { icon: 'locationIcon', name: 'Локация' },
-  ],
-});
-
-const chatUsersMenu = new Menu({
-  attrs: {
-    style: 'right: 10px; top: 80px;',
-  },
-  items: [
-    { icon: 'plusIcon', name: 'Добавить пользователя' },
-    { icon: 'crossIcon', name: 'Удалить пользователя' },
-  ],
-});
-
-const toggleAppendMenu = () => {
-  appendMenu.getContent().classList.toggle('menu__wrap--shown');
-};
-
-const toggleChatUsersMenu = () => {
-  chatUsersMenu.getContent().classList.toggle('menu__wrap--shown');
-};
-
-export default class Chat extends Block {
-  constructor(props: ChatProps) {
-    const chatItemClick = (event: Event) => {
-      const { dataid } = (event.currentTarget as HTMLElement).dataset;
-      const chatListCopy = JSON.parse(JSON.stringify(props.chatList)) as ChatProps['chatList'];
-      chatListCopy.forEach((item) => {
-        item.isActive = item.id === dataid;
-      });
-
-      this.setLists({
-        chatList: chatListCopy.map((chatItemInfo) => {
-          return new ChatPlank({ ...chatItemInfo, chatItemClick });
-        }),
-      });
-    };
-
+class Chat extends Block {
+  constructor(props: Props) {
     super({
       ...props,
-      chatList: props.chatList.map((chatItemInfo) => {
-        const a = {
-          ...chatItemInfo,
-          chatItemClick,
-        };
-        return new ChatPlank(a);
-      }),
-      chatGroups: [
-        new ChatMsgGroup({
-          date: '19 июня',
-          messages: [
-            {
-              type: 'text',
-              time: '11:56',
-              content: `<p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент
-                        попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что
-                        астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на
-                        поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
-                        <p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так
-                        никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе
-                        за 45000 евро.</p>`,
-              status: 'sent',
-              isMine: false,
-            },
-            {
-              type: 'image',
-              time: '18:23',
-              src: 'https://imgcdn.stablediffusionweb.com/2024/2/24/e6379db8-e816-4528-801f-0e20647245d3.jpg',
-              status: 'sent',
-              isMine: false,
-            },
-            {
-              type: 'text',
-              time: '18:23',
-              content: 'Круто!',
-              status: 'sent',
-              isMine: true,
-            },
-          ],
-        }),
-      ],
+      chatPlankList: new ChatPlankList({}),
+      // store.getState().chatList.map((a) => {
+      //   console.log('this123 ', this);
+      //   return new ChatPlank({ ...a, chatItemClick: chatItemClick.bind(this) });
+      // }),
+      chatMsgList: new ChatMsgList({}),
       chatMsgForm: new chatMsgForm({
-        onAppendBtnClick: () => {
-          toggleAppendMenu();
+        sendMsgHandler: (msg: string) => {
+          ChatController.sendMessage(msg);
+        },
+        onAppendBtnClick: (event: Event) => {
+          event.stopPropagation();
+          this.hideAllMenus();
+          this.children.appendFileMenu.toggleVisibility();
         },
       }),
-      appendMenu,
-      chatUsersMenu,
+      appendFileMenu: new Menu({
+        attrs: {
+          style: 'bottom: 75px; left: 310px;',
+        },
+        items: [
+          { icon: 'mediaIcon', name: 'Изображение', id: 'loadPhoto' }
+        ],
+        events: {
+          'loadPhoto.click': () => {
+            this.children.appendFileMenu.hide();
+            this.children.uploadImageMsgModal.show();
+          },
+        }
+      }),
+      chatUsersMenu: new Menu({
+        attrs: {
+          style: 'right: 10px; top: 80px;',
+        },
+        items: [
+          { icon: 'plusIcon', name: 'Добавить пользователя', id: 'addUserItem' },
+          { icon: 'crossIcon', name: 'Удалить пользователя', id: 'deleteUserItem' },
+        ],
+        events: {
+          'addUserItem.click': () => {
+            this.children.chatUsersMenu.hide();
+            this.children.addUserModal.show();
+          },
+          'deleteUserItem.click': () => {
+            this.children.chatUsersMenu.hide();
+            this.children.deleteUserModal.show();
+          }
+        }
+      }),
+      chatListMenu: new Menu({
+        attrs: {
+          style: 'left: 45px; top: 20px;',
+        },
+        items: [
+          { icon: 'plusIcon', name: 'Добавить чат', id: 'addChatItem' },
+          { icon: 'crossIcon', name: 'Удалить чат', id: 'deleteChatItem' },
+        ],
+        events: {
+          'addChatItem.click': () => {
+            this.children.chatListMenu.hide();
+            this.children.addChatModal.show();
+          },
+          'deleteChatItem.click': () => {
+            this.children.chatListMenu.hide();
+            this.children.deleteChatModal.show();
+          }
+        }
+      }),
       chatSearchInputLabel: 'Поиск',
       chatSearchInputValue: '',
-      avatarImgUrl: './images/dummy.jpg',
       events: {
-        'chatMenuBtn.click': () => {
-          toggleChatUsersMenu();
+        'click': (event: Event) => {
+          const isClickInsideMenu = (event.target as HTMLElement).closest('.menu__wrap') !== null;
+          if (isClickInsideMenu) return;
+          this.hideAllMenus();
+        },
+        'chatUsersMenuBtn.click': (event: Event) => {
+          event.stopPropagation();
+          this.hideAllMenus();
+          this.children.chatUsersMenu.toggleVisibility();
+        },
+        'chatListMenuBtn.click': (event: Event) => {
+          event.stopPropagation();
+          this.hideAllMenus();
+          this.children.chatListMenu.show();
         },
         'chatSearchInput.focus': () => {
           (this.getContent().querySelector('.searchInput__wrap') as HTMLElement).classList.add('searchInput__wrap--focused');
@@ -127,14 +118,100 @@ export default class Chat extends Block {
           }
         },
         'profileLink.click': () => {
-          props.changePage('Profile');
+          (new Router).go('/settings');
         },
+        'addChatBtn.click': () => {
+          const addChatModalComponent = this.children.addChatModal;
+          if (addChatModalComponent) addChatModalComponent.show();
+        }
       },
-      pagesNavigation: new PagesNavigation({ navigationList: props.navigationList, changePage: props.changePage }),
+      addChatModal: new addChatModal({
+        header: 'Добавить новый чат',
+        btnText: 'Добавить',
+        btnClickHandler: async (chatName: string) => {
+          await ChatController.createChat(chatName);
+          await ChatController.getChats();
+        }
+      }),
+      addUserModal: new addUserModal({
+        header: 'Добавить пользователя в чат',
+        btnText: 'Добавить',
+        btnClickHandler: async (id: string) => {
+          await ChatController.addUserToChat(id);
+          await ChatController.updateCurrentChatUsers();
+        }
+      }),
+      deleteUserModal: new DeleteUserModal({
+        header: 'Удаление пользователя из чата',
+        btnText: 'Удалить',
+        btnClr: 'orange',
+        itemSelectorHint: 'Выберите пользователя',
+        btnClickHandler: async (id: string) => {
+          await ChatController.deleteUserFromChat(id);
+          await ChatController.updateCurrentChatUsers();
+        }
+      }),
+      deleteChatModal: new DeleteChatModal({
+        header: 'Удаление чата',
+        btnText: 'Удалить',
+        btnClr: 'orange',
+        itemSelectorHint: 'Выберите чат',
+        btnClickHandler: async (id: string) => {
+          await ChatController.deleteChat(id);
+          await ChatController.getChats();
+        }
+      }),
+      uploadImageMsgModal: new addFileModal({
+        publicId: 'modal',
+        actionLinkText: 'Выбрать файл на компьютере',
+        btnText: 'Загрузить',
+        fileInputName: 'resource',
+        addFileModalHandler: async (formData) => {
+          console.log('formData ', [...formData.entries()]);
+          await ChatController.sendFile(formData);
+          this.children.uploadImageMsgModal.reset();
+          this.children.uploadImageMsgModal.hide();
+        }
+      }),
+      userName: 'Название чата',
+      userAvatar: './images/dummy.jpg',
+      currentOpenedChat: null
     });
+
+    void ChatController.getChats();
   }
 
   render() {
     return rawTemplate;
   }
+
+  hideAllMenus() {
+    this.children.chatUsersMenu.hide();
+    this.children.appendFileMenu.hide();
+    this.children.chatListMenu.hide();
+  }
+
+  componentDidMount() {
+    this.children.addChatModal.hide();
+    this.children.addUserModal.hide();
+    this.children.deleteUserModal.hide();
+    this.children.deleteChatModal.hide();
+    this.children.uploadImageMsgModal.hide();
+
+    this.children.appendFileMenu.hide();
+    this.children.chatUsersMenu.hide();
+    this.children.chatListMenu.hide();
+  }
 }
+
+export default connect(Chat,
+  (state) => ({
+    currentOpenedChat: state.currentOpenedChat
+  }),
+  function (this: Chat, state: StoreState) {
+    this.setProps({
+      chatTitle: state.currentOpenedChat ? state.currentOpenedChat.title : '',
+      currentOpenedChat: state.currentOpenedChat
+    });
+  }
+);

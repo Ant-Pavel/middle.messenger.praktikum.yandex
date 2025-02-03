@@ -1,14 +1,18 @@
-<li class="chat__item chatCard {{#if isActive}} chatCard--active {{/if}}" data-dataId="{{ id }}">
-    <img class="chatCard__image" width="50" height="50" src="{{avatarImgUrl}}" alt="chat image">
+<li class="chat__item chatCard" data-dataId="{{ id }}">
+    {{#if avatar}}
+        <img class="chatCard__image" width="50" height="50" src="{{avatar}}" alt="chat image">
+    {{else}}
+        <div class="chatCard__imageDummy"></div>
+    {{/if}}
     <div class="chatCard__info">
         <div class="chatCard__top">
-            <p class="chatCard__name">{{ name }}</p>
-            <span class="chatCard__time">{{ time }}</span>
+            <p class="chatCard__name">{{ title }}</p>
+            <span class="chatCard__time">{{ lastMsgTime }}</span>
         </div>
         <div class="chatCard__bottom">
-            <p class="chatCard__lastMsg">{{{ lastMsg }}}</p>
-            {{#if unreadAmount}}
-            <div class="chatCard__unreadAmount"><span>{{ unreadAmount }}</span></div>
+            <p class="chatCard__lastMsg">{{{ lastMsgContent }}}</p>
+            {{#if unread_count}}
+            <div class="chatCard__unreadAmount"><span>{{ unread_count }}</span></div>
             {{/if}}
         </div>
     </div>
