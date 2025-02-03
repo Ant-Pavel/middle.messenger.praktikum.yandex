@@ -1,0 +1,10 @@
+<div>
+  <span>{{#if hint }}{{hint}}{{else}}Выберите элемент{{/if}}</span> 
+  <ul class="itemsList">
+    {{#each items}}
+    <li class="userItem {{#if chosen }}item--chosen{{/if}}" data-userId="{{id}}">
+      {{name}}
+    </li>
+    {{/each}}
+  </ul>
+</div>
