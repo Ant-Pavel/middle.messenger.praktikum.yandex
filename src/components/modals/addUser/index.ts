@@ -2,7 +2,7 @@ import Block from '@/utils/Block';
 import type { Props } from '@/utils/Block';
 import '../common.pcss';
 import './addUser.pcss';
-import rawTemplate from './addUserModal.hbs?raw';
+import rawTemplate from './AddUserModal.hbs?raw';
 import Button from '@/components/button';
 import ItemSelector from '@/components/itemSelector';
 import FormControl from '@/components/formControl';
