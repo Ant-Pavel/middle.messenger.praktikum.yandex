@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.location.pathname === '/' || window.location.pathname === '/sign-up') {
       router.go('/messenger');
     }
-  } else {
+  } else if (window.location.pathname !== '/sign-up') {
     router.go('/');
   }
 });
