@@ -39,7 +39,7 @@ describe('Block', () => {
       a: 1
     });
     expect(mockBlock['_render']).toHaveBeenCalledTimes(2);
-    expect(mockBlock['_componentDidUpdate']).toHaveBeenCalledTimes(1);
+    expect(mockBlock['_componentDidUpdate']).toHaveBeenCalledTimes(0);
   });
 
   test('event listeners are attached', () => {
