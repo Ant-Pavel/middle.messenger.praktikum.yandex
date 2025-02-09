@@ -11,12 +11,8 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "lintstyle": "stylelint \"**/*.pcss\"",
     "lintstyle:fix": "stylelint \"**/*.pcss\" --fix",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
-  },  
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint lintstyle"
-    }
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
