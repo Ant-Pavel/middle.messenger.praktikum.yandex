@@ -136,7 +136,7 @@ export function getChatTimeStr(date: Date) {
 
 
 export function debounce(f: (...args: unknown[]) => void, delay: number = 15) {
-  let timerId: null | number = null;
+  let timerId: ReturnType<typeof setTimeout> | null = null;
   return function a(...args: unknown[]) {
     if (timerId) {
       clearTimeout(timerId);

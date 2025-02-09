@@ -7,7 +7,7 @@ type Props = {
   [key: string]: unknown
 };
 
-class Route {
+export class Route {
   private _pathname: string;
 
   private _blockClass: typeof Block;
@@ -94,7 +94,6 @@ export default class Router {
   }
 
   _onRoute(pathname: string) {
-    console.log('_onRoute call ', pathname);
     const route = this.getRoute(pathname);
     if (!route) {
       return;
