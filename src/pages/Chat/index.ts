@@ -129,16 +129,28 @@ class Chat extends Block {
         header: 'Добавить новый чат',
         btnText: 'Добавить',
         btnClickHandler: async (chatName: string) => {
-          await ChatController.createChat(chatName);
-          await ChatController.getChats();
+          try {
+            await ChatController.createChat(chatName);
+          } catch (error: unknown) {
+            console.error('Error while creating chat: ', error);
+          }
+          try {
+            await ChatController.getChats();
+          } catch (error: unknown) {
+            console.error('Error while getting chats: ', error);
+          }
         }
       }),
       addUserModal: new addUserModal({
         header: 'Добавить пользователя в чат',
         btnText: 'Добавить',
         btnClickHandler: async (id: string) => {
-          await ChatController.addUserToChat(id);
-          await ChatController.updateCurrentChatUsers();
+          try {
+            await ChatController.addUserToChat(id);
+            await ChatController.updateCurrentChatUsers();
+          } catch (error: unknown) {
+            console.error('Error while adding user to chat: ', error);
+          }
         }
       }),
       deleteUserModal: new DeleteUserModal({
@@ -147,8 +159,12 @@ class Chat extends Block {
         btnClr: 'orange',
         itemSelectorHint: 'Выберите пользователя',
         btnClickHandler: async (id: string) => {
-          await ChatController.deleteUserFromChat(id);
-          await ChatController.updateCurrentChatUsers();
+          try {
+            await ChatController.deleteUserFromChat(id);
+            await ChatController.updateCurrentChatUsers();
+          } catch (error: unknown) {
+            console.error('Error while deleting user from chat: ', error);
+          }
         }
       }),
       deleteChatModal: new DeleteChatModal({
@@ -157,8 +173,16 @@ class Chat extends Block {
         btnClr: 'orange',
         itemSelectorHint: 'Выберите чат',
         btnClickHandler: async (id: string) => {
-          await ChatController.deleteChat(id);
-          await ChatController.getChats();
+          try {
+            await ChatController.deleteChat(id);
+          } catch (error: unknown) {
+            console.error('Error while deleting chat: ', error);
+          }
+          try {
+            await ChatController.getChats();
+          } catch (error: unknown) {
+            console.error('Error while getting chats: ', error);
+          }
         }
       }),
       uploadImageMsgModal: new addFileModal({
@@ -168,7 +192,11 @@ class Chat extends Block {
         fileInputName: 'resource',
         addFileModalHandler: async (formData) => {
           console.log('formData ', [...formData.entries()]);
-          await ChatController.sendFile(formData);
+          try {
+            await ChatController.sendFile(formData);
+          } catch (error: unknown) {
+            console.error('Error while sending file: ', error);
+          }
           this.children.uploadImageMsgModal.reset();
           this.children.uploadImageMsgModal.hide();
         }
@@ -178,7 +206,11 @@ class Chat extends Block {
       currentOpenedChat: null
     });
 
-    void ChatController.getChats();
+    try {
+      void ChatController.getChats();
+    } catch (error: unknown) {
+      console.error('Chat::Error on getChats', error);
+    }
   }
 
   render() {

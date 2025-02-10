@@ -52,8 +52,16 @@ export default connect(
               updateChatListActiveEl(listEl);
 
               // загрузить и отобразить сообщения
-              await ChatController.setCurrentOpenedChat(dataid);
-              await ChatController.connectToChat(dataid);
+              try {
+                await ChatController.setCurrentOpenedChat(dataid);
+              } catch (error: unknown) {
+                console.error('ChatPlankList::Error on setCurrentOpenedChat', error);
+              }
+              try {
+                await ChatController.connectToChat(dataid);
+              } catch (error: unknown) {
+                console.error('ChatPlankList::Error on connectToChat', error);
+              }
             }
           }
         });

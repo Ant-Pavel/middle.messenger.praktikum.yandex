@@ -33,7 +33,7 @@ type SocketFileMessage = {
   }
 };
 
-class ProfileContoller {
+class ChatController {
   async createChat(title: string) {
     await chatsApi.createChat(title);
   }
@@ -86,7 +86,7 @@ class ProfileContoller {
 
     const currentUserId = store.getState().userInfo?.id;
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
-    let pingInterval: number;
+    let pingInterval: ReturnType<typeof setInterval>;
 
     socket.addEventListener('open', () => {
       console.log('соединение установлено');
@@ -320,4 +320,4 @@ class ProfileContoller {
   }
 }
 
-export default new ProfileContoller;
+export default new ChatController;
