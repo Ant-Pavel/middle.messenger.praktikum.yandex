@@ -23,7 +23,7 @@ function makeQueryStringFromObject(data: Record<string, string | number | boolea
 
   const keys = Object.keys(data);
   return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+    return `${result}${encodeURIComponent(key)}=${encodeURIComponent(data[key])}${index < keys.length - 1 ? '&' : ''}`;
   }, '?');
 }
 
