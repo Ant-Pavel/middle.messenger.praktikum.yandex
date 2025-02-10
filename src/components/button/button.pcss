@@ -1,0 +1,21 @@
+.button {
+    width: 280px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--blueClr);
+    color: #fff;
+    transition-property: background-color;
+    transition-duration: 0.25s;
+
+    &[disabled] {
+        background: lightgrey;
+        transition: none;
+        color: grey;
+        cursor: default;
+    }
+
+    &:not([disabled]):hover {
+        background-color: #1e55e0;
+    }
+}

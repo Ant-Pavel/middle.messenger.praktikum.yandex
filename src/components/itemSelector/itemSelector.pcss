@@ -1,0 +1,16 @@
+.itemsList {
+  border: 1px solid var(--blueClr);
+  border-radius: 5px;
+  padding: 5px;
+  height: 172px;
+  overflow-y: auto;
+
+  & li {
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  & li.item--chosen {
+    background-color: var(--greyBgClr);
+  }
+}

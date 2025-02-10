@@ -1,0 +1,21 @@
+<div class="profilePage">
+    {{{ sidebarArrowLink }}}
+    <main class="profile__container">
+        {{{ profileAvatar }}}
+
+        {{#ifEquals mode "readData"}}
+            {{{readDataTab}}}
+        {{/ifEquals}}
+
+        {{#ifEquals mode "changeData"}}
+            {{{changeDataTab}}}
+        {{/ifEquals}}
+
+        {{#ifEquals mode "changePassword"}}
+            {{{changePasswordTab}}}
+        {{/ifEquals}}
+
+    </main>
+    {{{ modal  }}}
+    {{{ pagesNavigation }}}
+</div>

@@ -1,0 +1,31 @@
+<div class="dialog__wrap">
+    <div class="dialog__overlay" data-forEventName="overlay">
+        <div class="dialog__holder">
+            <div class="dialog">
+                <div class="dialog__title">{{ header }}</div>
+                <form data-forEventName="modalForm">
+                    <div class="dialog__content">
+                        <div class="addItemModal__userControl">
+                            {{{ addUserControl }}}
+                        </div>
+                        <div class="addUserModal__itemSelect">
+                            {{{ itemSelector }}}
+                        </div>
+                    </div>
+                    <div class="dialog__actions">
+                        <div class="dialog__actionBtnWrap ">
+                            {{{ button }}}
+                        </div>
+                    </div>
+                    <div class="dialog__messages">
+                        <span class="dialog__message">
+                            {{#if hint }}
+                                {{ hint }}
+                            {{/if}}
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

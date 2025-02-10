@@ -1,0 +1,21 @@
+.infoTable {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__row:not(:last-child) {
+        border-bottom: 1px solid var(--greyLinesClr);
+    }
+
+    &__cell {
+        width: 50%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 13px;
+        line-height: 15px;
+    }
+
+    &__cell--value {
+        text-align: right;
+        color: var(--greyTextClr);
+    }
+}
