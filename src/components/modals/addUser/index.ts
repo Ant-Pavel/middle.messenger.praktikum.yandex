@@ -44,7 +44,11 @@ class AddUserModal extends Block {
         events: {
           input: async (event: Event) => {
             const { value } = event.target as HTMLInputElement;
-            await AddUserController.searchUsers(value);
+            try {
+              await AddUserController.searchUsers(value);
+            } catch (error: unknown) {
+              console.error('addUser::Error searching users', error);
+            }
 
             chosenUserId = null;
             this.children.button.setProps({

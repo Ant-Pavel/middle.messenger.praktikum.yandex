@@ -74,7 +74,6 @@ class HTTPTransport {
       });
 
       xhr.onload = function () {
-        console.log('xhr.onload ', xhr);
         if (xhr.status === 401 && !options.disableAnauthorizedRedirect) {
           (new Router).go('/');
         } else {

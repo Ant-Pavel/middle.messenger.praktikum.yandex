@@ -46,7 +46,13 @@ export default class LogIn extends Block {
             return !formValidation[name as keyof typeof formValidation](value);
           });
           if (!notValidFields.length) {
-            const logInRes = await LogInController.logIn(formData);
+            let logInRes;
+            try {
+              logInRes = await LogInController.logIn(formData);
+            } catch (error: unknown) {
+              console.log('LogIn error', error);
+            }
+            
             if (!logInRes) {
               this.setMsg('Что-то пошло не так. Попробуйте позже');
               return;

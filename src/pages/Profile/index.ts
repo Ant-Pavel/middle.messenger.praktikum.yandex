@@ -78,7 +78,11 @@ class Profile extends Block {
             color: 'red',
             actionClickHandler: async (event: Event) => {
               event.preventDefault();
-              await profileController.logOut();
+              try {
+                await profileController.logOut();
+              } catch (error: unknown) {
+                console.error('Profile::readDataTab::logOut error', error);
+              }
             }
           },
         ]
@@ -86,13 +90,21 @@ class Profile extends Block {
       changeDataTab: new Profile_changeData({
         changeProfileInfoControls: props.changeProfileInfoControls,
         saveDataHandler: async (data: FormValues) => {
-          await profileController.updateProfileData(data);
+          try {
+            await profileController.updateProfileData(data);
+          } catch (error: unknown) {
+            console.error('Profile::changeDataTab::updateProfileData error', error);
+          }
         }
       }),
       changePasswordTab: new Profile_changePassword({
         changeProfilePasswordControls: props.changeProfilePasswordControls,
         saveDataHandler: async (data) => {
-          await profileController.updateProfilePassword(data);
+          try {
+            await profileController.updateProfilePassword(data);
+          } catch (error: unknown) {
+            console.error('Profile::changePasswordTab::updateProfilePassword error', error);
+          }
         }
       }),
       modal: new ChangeProfileAvatarModal({
@@ -101,7 +113,11 @@ class Profile extends Block {
         btnText: 'Поменять',
         fileInputName: 'avatar',
         addFileModalHandler: async (formData) => {
-          await profileController.updateProfileImage(formData);
+          try {
+            await profileController.updateProfileImage(formData);
+          } catch (error: unknown) {
+            console.error('Profile::modal::updateProfileImage error', error);
+          }
           this.children.modal.reset();
           this.children.modal.hide();
         }

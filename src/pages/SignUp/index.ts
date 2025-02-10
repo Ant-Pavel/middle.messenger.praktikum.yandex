@@ -58,7 +58,12 @@ export default class Profile extends Block {
           });
           if (!notValidFields.length) {
             console.log('Form is valid', formData);
-            const signUpRes = await SignUpController.signUp(formData);
+            let signUpRes;
+            try {
+              signUpRes = await SignUpController.signUp(formData);
+            } catch (error: unknown) {
+              console.error('SignUp::Error on signUp', error);
+            }
             if (!signUpRes) {
               this.setMsg('Что-то пошло не так. Попробуйте позже');
               return;
